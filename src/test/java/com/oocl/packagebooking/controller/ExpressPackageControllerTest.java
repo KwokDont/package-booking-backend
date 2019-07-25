@@ -50,4 +50,17 @@ public class ExpressPackageControllerTest {
                 .andExpect(jsonPath("$", hasSize(2)));
     }
 
+    @Test
+    void should_return_package_when_insert_a_package() throws Exception{
+        ExpressPackage Pack = new ExpressPackage(001,"liufan","489489",40);
+
+        when(packageService.addPackage(Pack)).thenReturn(Pack);
+
+        ResultActions resultActions = mockMvc.perform(post("/packages").contentType(MediaType.APPLICATION_JSON_UTF8)
+        .content(new ObjectMapper().writeValueAsString(Pack)));
+
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(001)));
+    }
+
 }

@@ -10,5 +10,5 @@ public interface PackageService {
 
     List<ExpressPackage> findAllPackage();
 
-    ExpressPackage addPackage(Package pack);
+    ExpressPackage addPackage(ExpressPackage pack);
 }
