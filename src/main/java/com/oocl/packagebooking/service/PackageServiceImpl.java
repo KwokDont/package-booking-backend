@@ -20,6 +20,11 @@ public class PackageServiceImpl implements PackageService {
 
     @Override
     public ExpressPackage addPackage(ExpressPackage pack) {
+        return repository.save(pack);
+    }
+
+    @Override
+    public ExpressPackage book(int id, long appointmentTime) {
         return null;
     }
 }

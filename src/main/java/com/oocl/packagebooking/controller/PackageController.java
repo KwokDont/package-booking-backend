@@ -3,10 +3,7 @@ package com.oocl.packagebooking.controller;
 import com.oocl.packagebooking.model.ExpressPackage;
 import com.oocl.packagebooking.service.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,11 @@ public class PackageController {
     @PostMapping("/packages")
     public ExpressPackage addPackage(@RequestBody ExpressPackage expressPackage){
         return packageService.addPackage(expressPackage);
+    }
+
+    @PutMapping(value = "/packages",params = {"id","appointmentTime"})
+    public ExpressPackage book(@RequestParam int id, @RequestParam long appointmentTime){
+        return packageService.book(id,appointmentTime);
     }
 
 }

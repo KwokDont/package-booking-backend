@@ -54,13 +54,27 @@ public class ExpressPackageControllerTest {
     void should_return_package_when_insert_a_package() throws Exception{
         ExpressPackage Pack = new ExpressPackage(001,"liufan","489489",40);
 
-        when(packageService.addPackage(Pack)).thenReturn(Pack);
+        when(packageService.addPackage(any())).thenReturn(Pack);
 
         ResultActions resultActions = mockMvc.perform(post("/packages").contentType(MediaType.APPLICATION_JSON_UTF8)
         .content(new ObjectMapper().writeValueAsString(Pack)));
 
         resultActions.andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(001)));
+    }
+
+    @Test
+    void should_return_package_when_book() throws Exception{
+        ExpressPackage Pack = new ExpressPackage(001,"liufan","489489",40);
+
+        when(packageService.book(1,4648468)).thenReturn(Pack);
+
+        ResultActions resultActions = mockMvc.perform(put("/packages?id=1&appointmentTime=4648468")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(Pack)));
+
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)));
     }
 
 }

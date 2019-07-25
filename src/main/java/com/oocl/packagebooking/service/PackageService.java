@@ -11,4 +11,6 @@ public interface PackageService {
     List<ExpressPackage> findAllPackage();
 
     ExpressPackage addPackage(ExpressPackage pack);
+
+    ExpressPackage book(int id, long appointmentTime);
 }

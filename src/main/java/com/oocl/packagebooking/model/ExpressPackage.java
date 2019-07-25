@@ -33,7 +33,6 @@ public class ExpressPackage {
         this.phone = phone;
         this.status = "未取件";
         this.weight = weight;
-        this.appointmentTime = new Date().getTime();
     }
 
     public int getId() {
