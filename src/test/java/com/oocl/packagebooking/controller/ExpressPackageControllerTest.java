@@ -67,7 +67,7 @@ public class ExpressPackageControllerTest {
     void should_return_package_when_book() throws Exception{
         ExpressPackage Pack = new ExpressPackage(001,"liufan","489489",40);
 
-        when(packageService.book(1,4648468)).thenReturn(Pack);
+        when(packageService.book(any())).thenReturn(Pack);
 
         ResultActions resultActions = mockMvc.perform(put("/packages?id=1&appointmentTime=4648468")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -75,6 +75,20 @@ public class ExpressPackageControllerTest {
 
         resultActions.andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)));
+    }
+
+    @Test
+    void should_return_package_list_by_status() throws Exception{
+        ExpressPackage Pack = new ExpressPackage(001,"liufan","489489",40);
+        ExpressPackage Pack2 = new ExpressPackage(002,"l78fan","123489",4);
+        List<ExpressPackage> expressPackages = Arrays.asList(Pack,Pack2);
+
+        when(packageService.findPackagesByStatus("未取件")).thenReturn(expressPackages);
+
+        ResultActions resultActions = mockMvc.perform(get("/packages?status=未取件"));
+
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
     }
 
 }

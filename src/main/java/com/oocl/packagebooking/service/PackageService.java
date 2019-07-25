@@ -13,4 +13,8 @@ public interface PackageService {
     ExpressPackage addPackage(ExpressPackage pack);
 
     ExpressPackage book(ExpressPackage pack);
+
+    List<ExpressPackage> findPackagesByStatus(String status);
+
+    ExpressPackage takePackage(int id);
 }

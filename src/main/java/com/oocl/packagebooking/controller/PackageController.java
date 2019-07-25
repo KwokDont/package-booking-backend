@@ -29,4 +29,14 @@ public class PackageController {
         return packageService.book(expressPackage);
     }
 
+    @GetMapping(value = "/packages",params = "status")
+    public List<ExpressPackage> getPackagesByStatus(@RequestParam String status){
+        return packageService.findPackagesByStatus(status);
+    }
+
+    @PutMapping(value = "/packages/{id}")
+    public ExpressPackage takePackage(@PathVariable int id){
+        return packageService.takePackage(id);
+    }
+
 }

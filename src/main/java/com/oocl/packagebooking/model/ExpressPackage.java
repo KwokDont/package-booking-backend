@@ -15,7 +15,7 @@ public class ExpressPackage {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "status")
+    @Column(name = "status" ,columnDefinition="varchar(255) default 未取件")
     private String status;
 
     @Column(name = "weight")
@@ -25,6 +25,7 @@ public class ExpressPackage {
     private long appointmentTime;
 
     public ExpressPackage() {
+        this.status = "未取件";
     }
 
     public ExpressPackage(int id, String addressee, String phone, double weight) {

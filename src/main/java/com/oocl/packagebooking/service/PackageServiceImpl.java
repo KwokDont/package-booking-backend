@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PackageServiceImpl implements PackageService {
@@ -30,7 +31,25 @@ public class PackageServiceImpl implements PackageService {
         if(date.getHours() > 9 && date.getHours() < 20){
 
         }
+        pack.setStatus("已预约");
         return repository.save(pack);
+    }
+
+    @Override
+    public List<ExpressPackage> findPackagesByStatus(String status) {
+        return repository.findAll().stream().filter(pack -> pack.getStatus() == status).collect(Collectors.toList());
+    }
+
+    @Override
+    public ExpressPackage takePackage(int id) {
+        ExpressPackage expressPackage = repository.findById(id).get();
+        if(expressPackage == null){
+
+        }else{
+            expressPackage.setStatus("已取件");
+            expressPackage.setAppointmentTime(0);
+        }
+        return repository.save(expressPackage);
     }
 
 }
