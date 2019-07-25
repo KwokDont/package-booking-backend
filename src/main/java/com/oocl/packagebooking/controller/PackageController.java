@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class PackageController {
 
@@ -23,9 +24,9 @@ public class PackageController {
         return packageService.addPackage(expressPackage);
     }
 
-    @PutMapping(value = "/packages",params = {"id","appointmentTime"})
-    public ExpressPackage book(@RequestParam int id, @RequestParam long appointmentTime){
-        return packageService.book(id,appointmentTime);
+    @PutMapping(value = "/packages")
+    public ExpressPackage book(@RequestBody ExpressPackage expressPackage){
+        return packageService.book(expressPackage);
     }
 
 }

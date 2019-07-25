@@ -12,5 +12,5 @@ public interface PackageService {
 
     ExpressPackage addPackage(ExpressPackage pack);
 
-    ExpressPackage book(int id, long appointmentTime);
+    ExpressPackage book(ExpressPackage pack);
 }

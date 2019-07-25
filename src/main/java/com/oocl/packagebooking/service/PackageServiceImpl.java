@@ -5,6 +5,7 @@ import com.oocl.packagebooking.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,7 +25,12 @@ public class PackageServiceImpl implements PackageService {
     }
 
     @Override
-    public ExpressPackage book(int id, long appointmentTime) {
-        return null;
+    public ExpressPackage book(ExpressPackage pack) {
+        Date date = new Date(pack.getAppointmentTime());
+        if(date.getHours() > 9 && date.getHours() < 20){
+
+        }
+        return repository.save(pack);
     }
+
 }
