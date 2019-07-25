@@ -28,16 +28,18 @@ public class PackageServiceImpl implements PackageService {
     @Override
     public ExpressPackage book(ExpressPackage pack) {
         Date date = new Date(pack.getAppointmentTime());
+        ExpressPackage newPack = repository.findById(pack.getId()).get();
         if(date.getHours() > 9 && date.getHours() < 20){
 
         }
-        pack.setStatus("已预约");
-        return repository.save(pack);
+        newPack.setStatus("已预约");
+        newPack.setAppointmentTime(pack.getAppointmentTime());
+        return repository.save(newPack);
     }
 
     @Override
     public List<ExpressPackage> findPackagesByStatus(String status) {
-        return repository.findAll().stream().filter(pack -> pack.getStatus() == status).collect(Collectors.toList());
+        return repository.findAll().stream().filter(pack -> pack.getStatus().equals(status)).collect(Collectors.toList());
     }
 
     @Override

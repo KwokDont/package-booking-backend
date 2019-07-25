@@ -91,4 +91,16 @@ public class ExpressPackageControllerTest {
                 .andExpect(jsonPath("$", hasSize(2)));
     }
 
+    @Test
+    void should_return_package_when_take_package() throws Exception{
+        ExpressPackage Pack = new ExpressPackage(1,"liufan","489489",40);
+
+        when(packageService.takePackage(1)).thenReturn(Pack);
+
+        ResultActions resultActions = mockMvc.perform(put("/packages/1"));
+
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)));
+    }
+
 }
