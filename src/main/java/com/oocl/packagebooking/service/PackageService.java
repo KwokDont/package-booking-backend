@@ -1,10 +1,14 @@
 package com.oocl.packagebooking.service;
 
+import com.oocl.packagebooking.model.ExpressPackage;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public interface PackageService {
 
-    List<Package> findAllPackage();
+    List<ExpressPackage> findAllPackage();
 
-    Package addPackage(Package pack);
+    ExpressPackage addPackage(Package pack);
 }

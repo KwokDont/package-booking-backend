@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Package {
+public class ExpressPackage {
 
     @Id
     private int id;
@@ -24,10 +24,10 @@ public class Package {
     @Column(name = "appointment_time")
     private long appointmentTime;
 
-    public Package() {
+    public ExpressPackage() {
     }
 
-    public Package(int id, String addressee, String phone, double weight) {
+    public ExpressPackage(int id, String addressee, String phone, double weight) {
         this.id = id;
         this.addressee = addressee;
         this.phone = phone;

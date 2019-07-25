@@ -1,5 +1,6 @@
 package com.oocl.packagebooking.controller;
 
+import com.oocl.packagebooking.model.ExpressPackage;
 import com.oocl.packagebooking.service.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ public class PackageController {
     private PackageService packageService;
 
     @GetMapping("/packages")
-    public List<Package> getAllPackage(){
+    public List<ExpressPackage> getAllPackage(){
         return packageService.findAllPackage();
     }
 
